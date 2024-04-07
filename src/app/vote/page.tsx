@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-export default function Page () {
-  return (
-    <main>
-      <h1>パンダがカフェで注文する料理は？</h1>
-    </main>
-  )
-}
-=======
 "use client";
 import React, { useState } from 'react';
 
@@ -63,5 +54,3 @@ export default function vote() {
      
   }
   
-  
->>>>>>> 0d01e71 (投票画面の作成)
