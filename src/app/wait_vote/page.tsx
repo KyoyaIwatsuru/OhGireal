@@ -1,7 +1,12 @@
-export default function Page () {
+export default function wait_vote () {
+
   return (
-    <main>
-      <h1>パンダがカフェで注文する料理は？</h1>
-    </main>
+    <>
+        <div className="h-screen w-screen flex justify-center items-center">
+            <div className="text-4xl">
+                投票が完了するまでお待ちください
+            </div>
+        </div>
+    </>
   )
 }
