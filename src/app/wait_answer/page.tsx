@@ -1,7 +1,17 @@
-export default function Page () {
+export default function wait_answer () {
+
   return (
-    <main>
-      <h1>パンダがカフェで注文する料理は？</h1>
-    </main>
+    <>
+      <div　className="text-center mt-40 ">
+          <div className="text-2xl">
+              残り時間  1:00
+          </div>
+      </div>
+      <div　className="text-center  mt-40">
+          <div className="text-2xl">
+              残り時間が経過するまでお待ち下さい
+          </div>
+      </div>
+    </>
   )
 }
