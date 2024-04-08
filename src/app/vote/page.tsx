@@ -1,8 +1,13 @@
 "use client";
 import React, { useState } from 'react';
 
+interface OrderButtonProps {
+    id: number;
+    clickOrder: number[];
+    setClickOrder: React.Dispatch<React.SetStateAction<number[]>>;
+  }
 
-const OrderButton = ({ id, clickOrder, setClickOrder }) => {
+const OrderButton: React.FC<OrderButtonProps> = ({ id, clickOrder, setClickOrder }) => {
     const handleClick = () => {
       if (!clickOrder.includes(id)) {
         setClickOrder([...clickOrder, id]);
