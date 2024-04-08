@@ -1,4 +1,4 @@
-export default function wait_vote () {
+export default function Wait_vote () {
 
   return (
     <>
