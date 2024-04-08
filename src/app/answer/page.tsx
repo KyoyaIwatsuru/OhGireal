@@ -1,9 +1,13 @@
-export default function answer() {
+import { fetchTheme } from "@/app/lib/actions";
+
+export default async function answer() {
+    const theme = await fetchTheme();
+
   return(
       <>
       <div　className="text-center  mt-40">
           <div className="text-4xl">
-              パンダがカフェで注文する料理は？
+              {theme}
           </div>
       </div>
       
