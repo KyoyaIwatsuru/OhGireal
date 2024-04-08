@@ -33,7 +33,7 @@ const OrderButton: React.FC<OrderButtonProps> = ({ id, clickOrder, setClickOrder
     );
   };
   
-export default function vote() {
+export default function Vote() {
     const [clickOrder, setClickOrder] = useState<number[]>([]);
     return(
         <>
