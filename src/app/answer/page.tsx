@@ -1,5 +1,9 @@
+"use client";
 import { fetchTheme } from "@/app/lib/actions";
+import { Button } from "@material-tailwind/react";
+import Link from 'next/link'
 
+const id =1
 export default async function answer() {
     const theme = await fetchTheme();
 
@@ -16,6 +20,7 @@ export default async function answer() {
               残り時間  3:00
           </div>
       </div>
+
       <div className="mt-20">
       <div className="flex flex-col items-end gap-6 w-96 mx-auto my-auto ">
           <div className="relative w-full min-w-[200px]">
@@ -30,6 +35,7 @@ export default async function answer() {
           </div>
       </div>
       </div>
+
       <div className="mt-20">
       <div className="flex flex-col items-end gap-6 w-96 mx-auto my-auto ">
           <div className="relative w-full min-w-[200px]">
@@ -44,6 +50,11 @@ export default async function answer() {
           </div>
       </div>
       </div>
+      <Link href={"/wait_answer/"+id}> 
+        <div className="flex mt-20">
+            <Button className="mx-auto" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>投稿</Button>
+        </div>
+      </Link>
       </>
   );
    
