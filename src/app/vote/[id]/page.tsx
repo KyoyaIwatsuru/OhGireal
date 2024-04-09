@@ -1,11 +1,14 @@
 "use client";
 import React, { useState } from 'react';
+import type { NextPage } from 'next'
+import { useParams } from 'next/navigation'
 
 interface OrderButtonProps {
     id: number;
     clickOrder: number[];
     setClickOrder: React.Dispatch<React.SetStateAction<number[]>>;
   }
+
 
 const OrderButton: React.FC<OrderButtonProps> = ({ id, clickOrder, setClickOrder }) => {
     const handleClick = () => {
@@ -35,11 +38,13 @@ const OrderButton: React.FC<OrderButtonProps> = ({ id, clickOrder, setClickOrder
   
 export default function Vote() {
     const [clickOrder, setClickOrder] = useState<number[]>([]);
+    const params = useParams()
+	const pid= params.id
     return(
         <>
         <div className="text-center  mt-40">
             <div className="text-4xl">
-                投票
+                投票{pid}
             </div>
         </div>
 
