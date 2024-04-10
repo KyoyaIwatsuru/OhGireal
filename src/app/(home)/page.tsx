@@ -1,8 +1,6 @@
-'use client';
-
 import Link from 'next/link'
 import Image from "next/image";
-import { Button } from "@material-tailwind/react";
+import { Start } from "@/app/components/button";
 
 export default function Page () {
   return (
@@ -16,9 +14,7 @@ export default function Page () {
         priority
       />
       <Link href="/answer">
-        <div className='flex'>
-          <Button className="mx-auto mt-[5%]" color='gray' placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>START</Button>
-        </div>
+        <Start />
       </Link>
     </main>
   )

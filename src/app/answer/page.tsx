@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { fetchThemes } from "@/app/lib/actions";
 import Time from "@/app/components/time";
-import { Button } from "@material-tailwind/react";
+import { Form } from "@/app/components/button";
 
 const id = 1
 export default async function Page () {
@@ -53,9 +53,7 @@ export default async function Page () {
                     </div>
                 </div>
                 <Link href={"/wait_answer/" + id}> 
-                    <div className="flex mt-20">
-                        <Button className="mx-auto" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>投稿</Button>
-                    </div>
+                    <Form />
                 </Link>
             </>
         );
