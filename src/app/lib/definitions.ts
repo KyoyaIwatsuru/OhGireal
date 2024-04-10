@@ -1,7 +1,8 @@
 export type themes = {
   id: number;
   theme: string;
-  time: Date;
+  start_time: Date;
+  end_time: Date;
 };
 
 export type users = {
