@@ -1,6 +1,6 @@
 'use client';
 import { useParams } from 'next/navigation'
-export default function wait_answer () {
+export default function Wait_answer () {
   const urlParams=useParams()
   const pageId:string|string[]=urlParams.id
   return (

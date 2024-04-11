@@ -1,6 +1,6 @@
 'use client'
 import { useParams } from 'next/navigation'
-export default function result() {
+export default function Result() {
   const urlParams=useParams()
   const pageId=urlParams.id
   return (
