@@ -4,6 +4,7 @@ import type { NextPage } from 'next'
 import { useParams } from 'next/navigation'
 import { useRouter } from 'next/navigation';
 interface OrderButtonProps {
+    pageId:string|string[],
     index: number;
     entry: { name: string; answer: string };
     clickOrder: number[];
@@ -13,6 +14,7 @@ interface OrderButtonProps {
   }
 
   const OrderButton: React.FC<OrderButtonProps> = ({
+    pageId,
     index,
     entry,
     clickOrder,
@@ -26,7 +28,7 @@ interface OrderButtonProps {
         setClickOrder([...clickOrder, index]);
         if (clickOrder.length === 2) {
           if(currentPage==2){
-            router.push('/wait_vote');
+            router.push('/wait_vote/'+pageId);
           }
           setCurrentPage((prevPage) => prevPage + 1);
           setClickOrder([]);
@@ -36,7 +38,7 @@ interface OrderButtonProps {
   
     return (
       <button
-        className="w-96 h-96 select-none transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none rounded-3xl bg-gray-100 text-black shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:opacity-[0.85] active:shadow-none"
+        className="w-96 h-96 select-none transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none rounded-3xl bg-gray-100 text-black shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
         onClick={handleClick}
       >
         <div className="flex flex-col">
@@ -53,8 +55,8 @@ interface OrderButtonProps {
   export default function Vote() {
     const [clickOrder, setClickOrder] = useState<number[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const router = useRouter();
-  
+    const urlParams=useParams()
+    const pageId=urlParams.id
     const entries: { name: string; answer: string }[] = [
       { name: 'a', answer: 'hoge1' },
       { name: 'b', answer: 'hoge2' },
@@ -65,19 +67,7 @@ interface OrderButtonProps {
     ];
   
     const displayEntries = entries.slice((currentPage - 1) * 3, currentPage * 3);
-  
-    const handlePageChange = (direction: 'prev' | 'next') => {
-      if (direction === 'prev' && currentPage > 1) {
-        setCurrentPage(currentPage - 1);
-        setClickOrder([]);
-      } else if (direction === 'next' && currentPage * 3 < entries.length) {
-        setCurrentPage(currentPage + 1);
-        setClickOrder([]);
-      } else if (direction === 'next' && currentPage * 3 >= entries.length) {
-        // 最後のページの入力が終わったら、別のページに遷移する
-        router.push('/result');
-      }
-    };
+
   
     return (
       <>
@@ -90,6 +80,7 @@ interface OrderButtonProps {
         <div className="flex justify-center gap-4 mt-20 mx-auto">
           {displayEntries.map((entry, index) => (
             <OrderButton
+              pageId={pageId}
               key={index}
               index={index}
               entry={entry}
