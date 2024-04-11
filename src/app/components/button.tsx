@@ -13,7 +13,7 @@ export function Start() {
 export function Form() {
   return (
     <div className="flex mt-[2%]">
-      <Button className="mx-auto" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>投稿</Button>
+      <Button type="submit" className="mx-auto" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>投稿</Button>
     </div>
   );
 }
