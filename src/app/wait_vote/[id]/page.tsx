@@ -1,5 +1,9 @@
-export default function Wait_vote () {
+'use client'
+import { useParams } from 'next/navigation'
 
+export default function Wait_vote () {
+  const urlParams=useParams()
+  const pageId=urlParams.id
   return (
     <>
         <div className="h-screen w-screen flex justify-center items-center">

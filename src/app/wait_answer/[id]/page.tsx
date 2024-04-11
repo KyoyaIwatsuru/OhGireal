@@ -1,5 +1,8 @@
+'use client';
+import { useParams } from 'next/navigation'
 export default function wait_answer () {
-
+  const urlParams=useParams()
+  const pageId:string|string[]=urlParams.id
   return (
     <>
       <div　className="text-center mt-40 ">

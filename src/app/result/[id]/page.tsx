@@ -1,4 +1,8 @@
+'use client'
+import { useParams } from 'next/navigation'
 export default function result() {
+  const urlParams=useParams()
+  const pageId=urlParams.id
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="max-w-md w-full">
