@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 export default function Time({
   end_time
@@ -8,6 +10,8 @@ export default function Time({
   end_time: Date;
 }) {
   const [time, timeChange] = useState('03:00');
+  const router = useRouter();
+  const params = useParams();
 
   const countDown = () => {
     const d = new Date(end_time.getTime() - Date.now());
@@ -17,6 +21,9 @@ export default function Time({
     timeChange(`${m}:${s}`);
 
     const timeoutId = setTimeout(() => {
+      if (d.getTime() <= 0) {
+        router.push('/vote/${params.id}')
+      }
       countDown();
     }, 1000);
   };
