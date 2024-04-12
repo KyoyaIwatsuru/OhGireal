@@ -21,9 +21,6 @@ export default function Result() {
             </div>
           </div>
         </div>
-        {/* <div className="max-w-2xl w-full flex justify-center">
-          <MdiHumanHandsup/>
-        </div> */}
         <div className="max-w-2xl w-full flex justify-center mb-8">
           <div className="text-2xl">きょうや</div>
         </div>
@@ -37,9 +34,6 @@ export default function Result() {
                 <div className="text-xl">パンダパンダパンダ</div>
                 </div>
             </div>
-            {/* <div className="max-w-2xl w-full flex justify-center">
-              <MdiHumanHandsup/>
-            </div> */}
             <div className="max-w-2xl w-full flex justify-center mb-8">
               <div className="text-xl">たくま</div>
             </div>
@@ -53,9 +47,6 @@ export default function Result() {
                 <div className="text-xl">パンダパンダパンダ</div>
                 </div>
             </div>
-            {/* <div className="max-w-2xl w-full flex justify-center">
-              <MdiHumanHandsup/>
-            </div> */}
             <div className="max-w-2xl w-full flex justify-center mb-8">
               <div className="text-xl">あらた</div>
             </div>
