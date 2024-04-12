@@ -1,7 +1,7 @@
 'use client'
 import { useParams } from 'next/navigation'
 import React from 'react';
-import type { SVGProps } from 'react';
+import { SVGProps } from 'react';
 export default function Result() {
   const urlParams=useParams()
   const pageId=urlParams.id
@@ -21,9 +21,9 @@ export default function Result() {
             </div>
           </div>
         </div>
-        <div className="max-w-2xl w-full flex justify-center">
-          <MdiHuman/>
-        </div>
+        {/* <div className="max-w-2xl w-full flex justify-center">
+          <MdiHumanHandsup/>
+        </div> */}
         <div className="max-w-2xl w-full flex justify-center mb-8">
           <div className="text-2xl">きょうや</div>
         </div>
@@ -37,9 +37,9 @@ export default function Result() {
                 <div className="text-xl">パンダパンダパンダ</div>
                 </div>
             </div>
-            <div className="max-w-2xl w-full flex justify-center">
-              <MdiHuman/>
-            </div>
+            {/* <div className="max-w-2xl w-full flex justify-center">
+              <MdiHumanHandsup/>
+            </div> */}
             <div className="max-w-2xl w-full flex justify-center mb-8">
               <div className="text-xl">たくま</div>
             </div>
@@ -53,9 +53,9 @@ export default function Result() {
                 <div className="text-xl">パンダパンダパンダ</div>
                 </div>
             </div>
-            <div className="max-w-2xl w-full flex justify-center">
-              <MdiHuman/>
-            </div>
+            {/* <div className="max-w-2xl w-full flex justify-center">
+              <MdiHumanHandsup/>
+            </div> */}
             <div className="max-w-2xl w-full flex justify-center mb-8">
               <div className="text-xl">あらた</div>
             </div>
@@ -70,7 +70,7 @@ export default function Result() {
   );
 }
 
-export function MdiHuman(props: SVGProps<SVGSVGElement>) {
+export function MdiHumanHandsup(props: SVGProps<SVGSVGElement>) {
 	return (<svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" viewBox="0 0 24 24" {...props}><path fill="currentColor" d="M5 1c0 2.7 1.56 5.16 4 6.32V22h2v-7h2v7h2V7.31C17.44 6.16 19 3.7 19 1h-2a5 5 0 0 1-5 5a5 5 0 0 1-5-5m5 0c-1.11 0-2 .89-2 2s.89 2 2 2s2-.89 2-2s-.89-2-2-2"></path></svg>);
 }
 
