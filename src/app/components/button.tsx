@@ -1,6 +1,9 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from "@material-tailwind/react";
+import { OrderButtonProps } from "@/app/lib/definitions";
 
 export function Start() {
   return (
@@ -14,6 +17,70 @@ export function Form() {
   return (
     <div className="flex mt-[2%]">
       <Button type="submit" className="mx-auto" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>投稿</Button>
+    </div>
+  );
+}
+
+const OrderButton: React.FC<OrderButtonProps> = ({
+  index,
+  pageId,
+  entry,
+  currentPage,
+  setCurrentPage,
+  clickOrder,
+  setClickOrder
+}) => {
+  const router = useRouter();
+  const rank = 3
+  const frequency = 3
+  const handleClick = () => {
+    if (!clickOrder.includes(index)) {
+      setClickOrder([...clickOrder, index]);
+      if (clickOrder.length === rank - 1) {
+        if(currentPage === frequency) {
+          router.push(`/wait_vote/${pageId}`);
+        }
+        setCurrentPage((prevPage) => prevPage + 1);
+        setClickOrder([]);
+      }
+    }
+  }
+
+  return (
+    <button
+      className="w-96 h-96 select-none transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none rounded-3xl bg-gray-100 text-black shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
+      onClick={handleClick}
+    >
+      <div className="flex flex-col">
+        <div className="text-2xl mt-10">{entry.name}</div>
+        <div className="text-2xl mt-10">{entry.answer}</div>
+        {clickOrder.includes(index) && (
+          <p className="text-2xl mt-10">{clickOrder.indexOf(index) + 1}</p>
+        )}
+      </div>
+    </button>
+  );
+};
+
+export function Vote({entries, pageId}: {entries: { name: string, answer: string }[], pageId: string}) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [clickOrder, setClickOrder] = useState<number[]>([]);
+  const displayEntries = entries.slice((currentPage - 1) * 3, currentPage * 3);
+
+  return (
+    <div className="flex justify-center gap-4 mt-20 mx-auto">
+      {displayEntries.map((entry, index) => (
+        <OrderButton
+          key={index}
+          index={index}
+          pageId={pageId}
+          entry={entry}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          clickOrder={clickOrder}
+          setClickOrder={setClickOrder}
+        />
+      ))}
     </div>
   );
 }

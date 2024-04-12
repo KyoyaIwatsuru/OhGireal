@@ -12,6 +12,7 @@ export default function Time({
   const [time, timeChange] = useState('03:00');
   const router = useRouter();
   const params = useParams();
+  const pageId = params.id;
 
   const countDown = () => {
     const d = new Date(end_time.getTime() - Date.now());
@@ -22,7 +23,7 @@ export default function Time({
 
     const timeoutId = setTimeout(() => {
       if (d.getTime() <= 0) {
-        router.push('/vote/${params.id}')
+        router.push(`/vote/${pageId}`)
       }
       countDown();
     }, 1000);
