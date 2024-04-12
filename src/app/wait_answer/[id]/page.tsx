@@ -2,14 +2,11 @@ import { fetchThemes, CheckID } from "@/app/lib/actions";
 import Time from "@/app/components/time";
 import PageId from "@/app/lib/page_id";
 //APIできるまでのやつ
-function CheckID(){
-  return true;//404    
-}
 
 export default async function Page ({ params }: { params: { id: string } }) {
   const themes = await fetchThemes();
   const pageId=params.id
-  const isIdValid= CheckID()
+  const isIdValid= await CheckID(pageId)
   if(isIdValid==true){
   return (
     <div className="h-screen bg-[#ffcc33]">
