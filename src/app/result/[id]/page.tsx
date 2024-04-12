@@ -6,7 +6,7 @@ import { faHouse } from '@fortawesome/free-solid-svg-icons'
 
 //APIできるまでのやつ
 function CheckID(pageId:string|string[]){
-  return false;//404    
+  return true;//404    
 }
 // import { SVGProps } from 'react';
 export default function Result() {

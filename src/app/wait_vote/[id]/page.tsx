@@ -2,7 +2,7 @@
 import { useParams } from 'next/navigation'
 //APIできるまでのやつ
 function CheckID(pageId:string|string[]){
-  return false;//404    
+  return true;//404    
 }
 export default function Wait_vote () {
   const urlParams=useParams()
