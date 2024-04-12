@@ -4,18 +4,19 @@ import { Start } from "@/app/components/button";
 
 export default function Page () {
   return (
-    <main>
-      <Image
-        className="mx-auto mt-[20%] relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-        src="/next.svg"
-        alt="Next.js Logo"
-        width={180}
-        height={37}
-        priority
-      />
-      <Link href="/answer">
-        <Start />
-      </Link>
-    </main>
+      <div className='h-screen bg-[#ffcc33]'>
+        <Image
+          className="mx-auto pt-60 dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
+          src="/logo_ohgireal.png"
+          alt="OhGireal Logo"
+          width={700}
+          height={300}
+          priority
+        />
+        <Link href="/answer">
+          <Start />
+        </Link>
+      </div>
+  
   )
 }

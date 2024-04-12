@@ -1,11 +1,13 @@
 'use client'
 import { useParams } from 'next/navigation'
 import React from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
 
 //APIできるまでのやつ
 function CheckID(pageId:string|string[]){
+
   return true;//404    
 }
 // import { SVGProps } from 'react';
