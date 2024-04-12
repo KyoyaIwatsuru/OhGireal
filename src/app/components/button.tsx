@@ -5,7 +5,7 @@ import { Button } from "@material-tailwind/react";
 export function Start() {
   return (
     <div className='flex'>
-      <Button className="mx-auto mt-[5%]" color='gray' placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>START</Button>
+      <Button size="lg"className="mx-auto mt-[5%]" color='gray' placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>はじめる</Button>
     </div>
   );
 }
