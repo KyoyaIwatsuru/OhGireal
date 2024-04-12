@@ -3,7 +3,7 @@ import Time from "@/app/components/time";
 import GET_ID from "@/app/lib/page_id";
 //APIできるまでのやつ
 function CheckID(pageId:string|string[]){
-  return false;//404    
+  return true;//404    
 }
 export default async function Page () {
   const themes = await fetchThemes();

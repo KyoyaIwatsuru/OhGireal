@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation'
 import { useRouter } from 'next/navigation';
 
 function CheckID(pageId:string|string[]){
-    return false;//404    
+    return true;//404    
   }
 interface OrderButtonProps {
     pageId:string|string[],
