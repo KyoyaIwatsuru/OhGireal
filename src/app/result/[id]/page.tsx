@@ -21,7 +21,7 @@ export default function Result() {
             パンダがカフェで注文する料理は？
           </div>
           <div className="max-w-2xl w-full flex justify-center">
-            <FontAwesomeIcon icon={faHouse}/>  
+            <FontAwesomeIcon icon={faHouse} />
           </div>
           <div className="max-w-2xl w-full flex justify-center">
           <div className="flex justify-center items-center">
