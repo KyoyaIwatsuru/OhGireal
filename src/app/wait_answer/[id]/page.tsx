@@ -1,27 +1,28 @@
 import { fetchThemes, CheckID } from "@/app/lib/actions";
 import Time from "@/app/components/time";
-import PageId from "@/app/lib/page_id";
-//APIできるまでのやつ
 
 export default async function Page ({ params }: { params: { id: string } }) {
   const themes = await fetchThemes();
-  const pageId=params.id
-  const isIdValid= await CheckID(pageId)
-  if(isIdValid==true){
-  return (
-    <div className="h-screen bg-[#ffcc33]">
-      <div className="text-center  pt-[20%]">
-        <div className="text-4xl font-bold">
-          残り時間が経過するまでお待ち下さい
+  const pageId = params.id;
+  const isIdValid = await CheckID(pageId);
+
+  if (isIdValid) {
+    return (
+      <>
+        <div className="h-screen bg-[#ffcc33]">
+          <div className="text-center  pt-[20%]">
+            <div className="text-4xl font-bold">
+              残り時間が経過するまでお待ち下さい
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="text-center mt-40 ">
-        <div className="text-2xl font-bold">
-          <Time end_time={themes?.end_time}/>
+        <div className="text-center mt-40 ">
+          <div className="text-2xl font-bold">
+            <Time end_time={themes?.end_time}/>
+          </div>
         </div>
-      </div>
-    </div>
-  )
+      </>
+    )
   }else{
     return (
       <div>

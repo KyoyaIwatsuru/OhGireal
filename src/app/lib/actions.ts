@@ -35,10 +35,8 @@ export async function CheckID(pageId: string) {
 
   try {
     const id = await sql<users>`SELECT id FROM users WHERE rand = ${pageId};`;
-    if (id.rows.length == 0) {
-      return false;
-    }
-    return true;
+
+    return id.rows[0];
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch id.');

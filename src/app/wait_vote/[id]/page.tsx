@@ -1,24 +1,20 @@
-'use client'
-import { useParams } from 'next/navigation'
-//APIできるまでのやつ
-function CheckID(pageId:string|string[]){
-  return true;//404    
-}
-export default function Wait_vote () {
-  const urlParams=useParams()
-  const pageId=urlParams.id
-  const isIdValid= CheckID(pageId)
-  if(isIdValid==true){
-  return (
-    <>
+import { CheckID } from "@/app/lib/actions";
+
+export default async function Page ({ params }: { params: { id: string } }) {
+  const pageId = params.id;
+  const isIdValid = await CheckID(pageId);
+
+  if(isIdValid){
+    return (
+      <>
         <div className="h-screen w-screen flex justify-center items-center bg-[#ffcc33]">
-            <div className="text-4xl font-bold">
-                投票が完了するまでお待ちください
-            </div>
+          <div className="text-4xl font-bold">
+            投票が完了するまでお待ちください
+          </div>
         </div>
-    </>
-  );
-  }else{
+      </>
+    );
+  } else {
     return (
       <div>
         <h1>404 NotFound</h1>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from "@material-tailwind/react";
 import { OrderButtonProps } from "@/app/lib/definitions";
@@ -62,10 +62,31 @@ const OrderButton: React.FC<OrderButtonProps> = ({
   );
 };
 
-export function Vote({entries, pageId}: {entries: { name: string, answer: string }[], pageId: string}) {
+function randomSelect(array: {name: string, answer: string}[], num: number) {
+  let newArray = [];
+
+  while(newArray.length < num && array.length > 0)
+  {
+    // 配列からランダムな要素を選ぶ
+    const rand = Math.floor(Math.random() * array.length);
+    // 選んだ要素を別の配列に登録する
+    newArray.push(array[rand]);
+    // もとの配列からは削除する
+    array.splice(rand, 1);
+  }
+
+  return newArray;
+}
+
+export function Vote({id, entries, pageId}: {id: number, entries: { name: string, answer: string }[], pageId: string}) {
   const [currentPage, setCurrentPage] = useState(1);
   const [clickOrder, setClickOrder] = useState<number[]>([]);
-  const displayEntries = entries.slice((currentPage - 1) * 3, currentPage * 3);
+  const [selectEntries, setSelectEntries] = useState<{ name: string, answer: string }[]>([]);
+
+  useEffect(() => {
+    setSelectEntries(randomSelect(entries.filter(n => n !== entries[id-1]), 12));
+  }, []);
+  const displayEntries = selectEntries.slice((currentPage - 1) * 3, currentPage * 3);
 
   return (
     <div className="flex justify-center gap-4 mt-20 mx-auto">

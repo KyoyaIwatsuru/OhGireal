@@ -1,20 +1,13 @@
-'use client'
-import { useParams } from 'next/navigation'
-import React from 'react';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCrown,faChildReaching,fa2,fa3,faPerson } from '@fortawesome/free-solid-svg-icons'
-
-//APIできるまでのやつ
-function CheckID(pageId:string|string[]){
-  return true;//404    
-}
 // import { SVGProps } from 'react';
-export default function Result() {
-  const urlParams=useParams()
-  const pageId=urlParams.id
-  const isIdValid=CheckID(pageId)
-  if(isIdValid==true){
+import { CheckID } from "@/app/lib/actions";
+
+export default async function Page ({ params }: { params: { id: string } }) {
+  const pageId = params.id;
+  const isIdValid = await CheckID(pageId);
+
+  if(isIdValid){
     return (
       <div className="flex justify-center items-center h-screen bg-[#ffcc33] text-black">
         <div className="max-w-2xl w-full">
@@ -78,7 +71,7 @@ export default function Result() {
         </div>
       </div>
     );
-  }else{
+  } else {
     return (
       <div>
         <h1>404 NotFound</h1>
