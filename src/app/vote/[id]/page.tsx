@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 import type { NextPage } from 'next'
 import { useParams } from 'next/navigation'
 import { useRouter } from 'next/navigation';
+
+function CheckID(pageId:string|string[]){
+    return false;//404    
+  }
 interface OrderButtonProps {
     pageId:string|string[],
     index: number;
@@ -57,6 +61,7 @@ interface OrderButtonProps {
     const [currentPage, setCurrentPage] = useState(1);
     const urlParams=useParams()
     const pageId=urlParams.id
+    const isIdValid= CheckID(pageId)
     const entries: { name: string; answer: string }[] = [
       { name: 'a', answer: 'hoge1' },
       { name: 'b', answer: 'hoge2' },
@@ -68,7 +73,7 @@ interface OrderButtonProps {
   
     const displayEntries = entries.slice((currentPage - 1) * 3, currentPage * 3);
 
-  
+    if(isIdValid==true){
     return (
       <>
         <div className="text-center mt-40">
@@ -93,7 +98,14 @@ interface OrderButtonProps {
         </div>
       </>
     );
-
+    }else{
+        return (
+            <div>
+              <h1>404 NotFound</h1>
+              <p>ページが見つかりませんでした。</p>
+            </div>
+          );
+    }
   }
   
   
