@@ -1,12 +1,12 @@
 import { fetchEntries, CheckID } from '@/app/lib/actions';
 import { Vote } from '@/app/components/button';
 
-export default async function Page(params: {params: { id: string }}) {
-  const pageId = params.params.id;
+export default async function Page({ params }: { params: { id: string } }) {
+  const pageId = params.id;
   const isIdValid = await CheckID(pageId);
   const entries = await fetchEntries();
 
-  if (isIdValid == true) {
+  if (isIdValid) {
     return (
       <>
         <div className="text-center mt-40">
@@ -14,7 +14,7 @@ export default async function Page(params: {params: { id: string }}) {
         </div>
 
         <div className="text-center text-2xl mt-20">順番にクリックして投票</div>
-        <Vote entries={entries} pageId={pageId}/>
+        <Vote id={isIdValid.id} entries={entries} pageId={pageId}/>
       </>
     );
   } else {
