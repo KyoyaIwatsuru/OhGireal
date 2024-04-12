@@ -11,9 +11,9 @@ export default function Result() {
         <div className="text-4xl font-black text-center mb-12">
           パンダがカフェで注文する料理は？
         </div>
-        <div className="max-w-2xl w-full flex justify-center">
+        {/* <div className="max-w-2xl w-full flex justify-center">
           <MdiCrown/>
-        </div>
+        </div> */}
         <div className="max-w-2xl w-full flex justify-center">
         <div className="flex justify-center items-center">
             <div className="inline-block bg-[#f2eef3] text-black px-4 py-2 rounded w-full text-2xl">
@@ -21,32 +21,41 @@ export default function Result() {
             </div>
           </div>
         </div>
+        {/* <div className="max-w-2xl w-full flex justify-center">
+          <MdiHumanHandsup/>
+        </div> */}
         <div className="max-w-2xl w-full flex justify-center mb-8">
           <div className="text-2xl">きょうや</div>
         </div>
         <div className="max-w-2xl w-full flex justify-between">
           <div>
-            <div className="max-w-2xl w-full flex justify-center">
+            {/* <div className="max-w-2xl w-full flex justify-center">
               <FluentEmojiHighContrast2ndPlaceMedal/>
-            </div>
+            </div> */}
             <div className="flex justify-center items-center">
                 <div className="inline-block bg-[#f2eef3] text-black px-4 py-2 rounded w-full text-2xl">
                 <div className="text-xl">パンダパンダパンダ</div>
                 </div>
             </div>
+            {/* <div className="max-w-2xl w-full flex justify-center">
+              <MdiHumanHandsup/>
+            </div> */}
             <div className="max-w-2xl w-full flex justify-center mb-8">
               <div className="text-xl">たくま</div>
             </div>
           </div>
           <div>
-            <div className="max-w-2xl w-full flex justify-center">
+            {/* <div className="max-w-2xl w-full flex justify-center">
               <FluentEmojiHighContrast3rdPlaceMedal/>
-            </div>
+            </div> */}
             <div className="flex justify-center items-center">
                 <div className="inline-block bg-[#f2eef3] text-black px-4 py-2 rounded w-full text-2xl">
                 <div className="text-xl">パンダパンダパンダ</div>
                 </div>
             </div>
+            {/* <div className="max-w-2xl w-full flex justify-center">
+              <MdiHumanHandsup/>
+            </div> */}
             <div className="max-w-2xl w-full flex justify-center mb-8">
               <div className="text-xl">あらた</div>
             </div>
