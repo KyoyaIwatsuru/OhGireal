@@ -11,8 +11,8 @@ export default function Wait_vote () {
   if(isIdValid==true){
   return (
     <>
-        <div className="h-screen w-screen flex justify-center items-center">
-            <div className="text-4xl">
+        <div className="h-screen w-screen flex justify-center items-center bg-[#ffcc33]">
+            <div className="text-4xl font-bold">
                 投票が完了するまでお待ちください
             </div>
         </div>
