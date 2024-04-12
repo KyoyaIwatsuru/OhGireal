@@ -69,17 +69,17 @@ export default function Result() {
   );
 }
 
-import { IconButton } from "@material-tailwind/react";
+// import { IconButton } from "@material-tailwind/react";
  
-export function IconButtonCustomStyles() {
-  return (
-    <div className="flex gap-4">
-      <IconButton className="rounded bg-[#ea4335] hover:shadow-[#ea4335]/20 focus:shadow-[#ea4335]/20 active:shadow-[#ea4335]/10" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
-        <i className="fab fa-google text-lg" />
-      </IconButton>
-    </div>
-  );
-}
+// export function IconButtonCustomStyles() {
+//   return (
+//     <div className="flex gap-4">
+//       <IconButton className="rounded bg-[#ea4335] hover:shadow-[#ea4335]/20 focus:shadow-[#ea4335]/20 active:shadow-[#ea4335]/10" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+//         <i className="fab fa-google text-lg" />
+//       </IconButton>
+//     </div>
+//   );
+// }
 
 import React from 'react';
 import type { SVGProps } from 'react';
