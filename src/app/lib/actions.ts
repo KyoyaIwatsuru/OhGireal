@@ -29,3 +29,30 @@ export async function addUser(name: string, answer: string) {
   }
   redirect(`/wait_answer/${rand}`);
 }
+
+export async function CheckID(pageId: string) {
+  noStore();
+
+  try {
+    const id = await sql<users>`SELECT id FROM users WHERE rand = ${pageId};`;
+    if (id.rows.length == 0) {
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch id.');
+  }
+}
+
+export async function fetchEntries() {
+  noStore();
+
+  try {
+    const entries = await sql<users>`SELECT name, answer FROM users;`;
+    return entries.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch users.');
+  }
+}

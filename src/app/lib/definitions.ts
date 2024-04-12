@@ -11,3 +11,12 @@ export type users = {
   answer: string;
   sum: number;
 };
+export interface OrderButtonProps {
+  index: number;
+  pageId: string;
+  entry: { name: string, answer: string };
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  clickOrder: number[];
+  setClickOrder: React.Dispatch<React.SetStateAction<number[]>>;
+}
