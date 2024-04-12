@@ -3,11 +3,10 @@ import { useParams } from 'next/navigation'
 import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import { faCrown,faChildReaching,fa2,fa3,faPerson } from '@fortawesome/free-solid-svg-icons'
 
 //APIできるまでのやつ
 function CheckID(pageId:string|string[]){
-
   return true;//404    
 }
 // import { SVGProps } from 'react';
@@ -23,58 +22,58 @@ export default function Result() {
             パンダがカフェで注文する料理は？
           </div>
           <div className="max-w-2xl w-full flex justify-center">
-            <FontAwesomeIcon icon={faHouse} />
+            <FontAwesomeIcon icon={faCrown} className="fa-2x"/>
           </div>
           <div className="max-w-2xl w-full flex justify-center">
           <div className="flex justify-center items-center">
               <div className="inline-block bg-[#f2eef3] text-black px-4 py-2 rounded w-full text-2xl">
-              <div className="text-3xl">パンダパンダパンダ</div>
+              <div className="text-3xl font-bold">パンダパンダパンダ</div>
               </div>
             </div>
           </div>
-          {/* <div className="max-w-2xl w-full flex justify-center">
-            <MdiHumanHandsup/>
-          </div> */}
+          <div className="max-w-2xl w-full flex justify-center">
+            <FontAwesomeIcon icon={faChildReaching} className="fa-2x"/>
+          </div>
           <div className="max-w-2xl w-full flex justify-center mb-8">
-            <div className="text-2xl">きょうや</div>
+            <div className="text-2xl font-bold">きょうや</div>
           </div>
           <div className="max-w-2xl w-full flex justify-between">
-            <div>
-              {/* <div className="max-w-2xl w-full flex justify-center">
-                <FluentEmojiHighContrast2ndPlaceMedal/>
-              </div> */}
+            <div className="w-1/2">
+              <div className="max-w-2xl w-full flex justify-center">
+                <FontAwesomeIcon icon={fa2} className="fa-2x"/>
+              </div>
               <div className="flex justify-center items-center">
                   <div className="inline-block bg-[#f2eef3] text-black px-4 py-2 rounded w-full text-2xl">
-                  <div className="text-xl">パンダパンダパンダ</div>
+                  <div className="text-xl font-bold">パンダパンダパンダパンダパンダ</div>
                   </div>
               </div>
-              {/* <div className="max-w-2xl w-full flex justify-center">
-                <MdiHumanHandsup/>
-              </div> */}
+              <div className="max-w-2xl w-full flex justify-center">
+                <FontAwesomeIcon icon={faPerson} className="fa-2x"/>
+              </div>
               <div className="max-w-2xl w-full flex justify-center mb-8">
-                <div className="text-xl">たくま</div>
+                <div className="text-xl font-bold">たくま</div>
               </div>
             </div>
-            <div>
-              {/* <div className="max-w-2xl w-full flex justify-center">
-                <FluentEmojiHighContrast3rdPlaceMedal/>
-              </div> */}
+            <div className="w-1/2">
+              <div className="max-w-2xl w-full flex justify-center">
+                <FontAwesomeIcon icon={fa3} className="fa-2x"/>
+              </div>
               <div className="flex justify-center items-center">
                   <div className="inline-block bg-[#f2eef3] text-black px-4 py-2 rounded w-full text-2xl">
-                  <div className="text-xl">パンダパンダパンダ</div>
+                  <div className="text-xl font-bold">パンダパンダパンダパンダパンダ</div>
                   </div>
               </div>
-              {/* <div className="max-w-2xl w-full flex justify-center">
-                <MdiHumanHandsup/>
-              </div> */}
+              <div className="max-w-2xl w-full flex justify-center">
+                <FontAwesomeIcon icon={faPerson} className="fa-2x"/>
+              </div>
               <div className="max-w-2xl w-full flex justify-center mb-8">
-                <div className="text-xl">あらた</div>
+                <div className="text-xl font-bold">あらた</div>
               </div>
             </div>
           </div>
-          <div className="flex justify-center space-x-8 mt-8">
-            <div className="text-2xl">あなたの順位</div>
-            <div className="text-2xl">５位</div>
+          <div className="flex justify-center space-x-8 mt-4 items-end">
+            <div className="text-2xl font-bold">あなたの順位</div>
+            <div className="text-4xl font-bold">５位</div>
           </div> 
         </div>
       </div>
