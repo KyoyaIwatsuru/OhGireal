@@ -30,14 +30,14 @@ export default async function Page ({ params }: { params: { id: string } }) {
           <div className="max-w-2xl w-full flex justify-center mb-8">
             <div className="text-2xl font-bold">きょうや</div>
           </div>
-          <div className="max-w-2xl w-full flex justify-between">
+          <div className="max-w-2xl w-full flex justify-between gap-4">
             <div className="w-1/2">
               <div className="max-w-2xl w-full flex justify-center">
                 <FontAwesomeIcon icon={fa2} className="fa-2x"/>
               </div>
               <div className="flex justify-center items-center">
                   <div className="inline-block bg-[#f2eef3] text-black px-4 py-2 rounded w-full text-2xl">
-                  <div className="text-xl font-bold">パンダパンダパンダパンダパンダ</div>
+                  <div className="text-xl font-bold">パンダパンダパンダパンダパンダパンダ</div>
                   </div>
               </div>
               <div className="max-w-2xl w-full flex justify-center">
