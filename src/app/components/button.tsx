@@ -48,14 +48,14 @@ const OrderButton: React.FC<OrderButtonProps> = ({
 
   return (
     <button
-      className="w-96 h-96 select-none transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none rounded-3xl bg-gray-100 text-black shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
+      className="w-full select-none transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none rounded-3xl bg-gray-100 text-black shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
       onClick={handleClick}
     >
       <div className="flex flex-col">
-        <div className="text-2xl mt-10">{entry.name}</div>
-        <div className="text-2xl mt-10">{entry.answer}</div>
+        <div className="text-2xl mt-4 text-center border-b border-black border-solid border-opacity-30">{entry.name}</div>
+        <div className="text-2xl mt-4 mb-4 text-center">{entry.answer}</div>
         {clickOrder.includes(index) && (
-          <p className="text-2xl mt-10">{clickOrder.indexOf(index) + 1}</p>
+          <p className="text-xl mt-4 mb-4">{clickOrder.indexOf(index) + 1}番</p>
         )}
       </div>
     </button>
@@ -89,7 +89,7 @@ export function Vote({id, entries, pageId}: {id: number, entries: { name: string
   const displayEntries = selectEntries.slice((currentPage - 1) * 3, currentPage * 3);
 
   return (
-    <div className="flex justify-center gap-4 mt-20 mx-auto">
+    <div className="flex flex-col items-center gap-4 mt-[10%] mx-auto w-[80%]">
       {displayEntries.map((entry, index) => (
         <OrderButton
           key={index}
