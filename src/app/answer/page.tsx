@@ -63,7 +63,7 @@ export default async function Page () {
                         </div>
                     </div>
                 </div>
-                <Form />
+                <Form param='投稿'/>
             </form>
         );
     } else {

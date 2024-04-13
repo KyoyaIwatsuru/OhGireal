@@ -1,3 +1,5 @@
+'use server';
+
 import { sql } from '@vercel/postgres';
 import { themes, users } from './definitions';
 import { unstable_noStore as noStore } from 'next/cache';
@@ -18,7 +20,6 @@ export async function fetchThemes() {
 
 export async function addUser(name: string, answer: string) {
   noStore();
-
   const rand = Math.floor(Math.random() *  1000)
 
   try {
@@ -47,10 +48,38 @@ export async function fetchEntries() {
   noStore();
 
   try {
-    const entries = await sql<users>`SELECT name, answer FROM users;`;
+    const entries = await sql<users>`SELECT id, name, answer FROM users;`;
     return entries.rows;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch users.');
   }
+}
+
+export async function updateSum(rank: { id: number, rank: number }[], pageId: string) {
+  noStore();
+  weightData(rank);
+
+  console.log(rank);
+  try {
+    for (let i = 0; i < rank.length; i++) {
+      await sql<users>`UPDATE users SET sum = sum + ${rank[i].rank} WHERE id = ${rank[i].id};`;
+    }
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to update sum.');
+  }
+  redirect(`/wait_vote/${pageId}`);
+}
+
+function weightData(rank: {id: number, rank: number}[]) {
+  rank.map(r => {
+    if (r.rank === 1) {
+      r.rank = 20;
+    } else if (r.rank === 2) {
+      r.rank = 5;
+    } else {
+      r.rank = 1;
+    }
+  });
 }

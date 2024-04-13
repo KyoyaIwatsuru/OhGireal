@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { Button } from "@material-tailwind/react";
 import { OrderButtonProps } from "@/app/lib/definitions";
+import { updateSum } from '@/app/lib/actions';
 
 export function Start() {
   return (
@@ -13,34 +13,37 @@ export function Start() {
   );
 }
 
-export function Form() {
+export function Form({param}: {param: string}) {
   return (
     <div className="flex mt-[2%]">
-      <Button type="submit" className="mx-auto" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>投稿</Button>
+      <Button type="submit" className="mx-auto" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>{param}</Button>
     </div>
   );
 }
 
 const OrderButton: React.FC<OrderButtonProps> = ({
   index,
-  pageId,
   entry,
   currentPage,
   setCurrentPage,
   clickOrder,
-  setClickOrder
+  setClickOrder,
+  rank,
+  setRank,
+  flag,
+  setFlag
 }) => {
-  const router = useRouter();
-  const rank = 3
-  const frequency = 3
+  const card = 3
+  const frequency = 4
   const handleClick = () => {
     if (!clickOrder.includes(index)) {
       setClickOrder([...clickOrder, index]);
-      if (clickOrder.length === rank - 1) {
-        if(currentPage === frequency) {
-          router.push(`/wait_vote/${pageId}`);
-        }
+      setRank([...rank, {id: entry.id, rank: clickOrder.length + 1}]);
+      if (clickOrder.length === card - 1) {
         setCurrentPage((prevPage) => prevPage + 1);
+        if(currentPage === frequency) {
+          setFlag(true);
+        }
         setClickOrder([]);
       }
     }
@@ -62,46 +65,55 @@ const OrderButton: React.FC<OrderButtonProps> = ({
   );
 };
 
-function randomSelect(array: {name: string, answer: string}[], num: number) {
+function randomSelect(array: {id: number, name: string, answer: string}[], num: number) {
   let newArray = [];
 
-  while(newArray.length < num && array.length > 0)
-  {
-    // 配列からランダムな要素を選ぶ
+  while(newArray.length < num && array.length > 0) {
     const rand = Math.floor(Math.random() * array.length);
-    // 選んだ要素を別の配列に登録する
     newArray.push(array[rand]);
-    // もとの配列からは削除する
     array.splice(rand, 1);
   }
 
   return newArray;
 }
 
-export function Vote({id, entries, pageId}: {id: number, entries: { name: string, answer: string }[], pageId: string}) {
+export function Vote({id, entries, pageId}: {id: number, entries: {id: number, name: string, answer: string }[], pageId: string}) {
   const [currentPage, setCurrentPage] = useState(1);
   const [clickOrder, setClickOrder] = useState<number[]>([]);
-  const [selectEntries, setSelectEntries] = useState<{ name: string, answer: string }[]>([]);
+  const [selectEntries, setSelectEntries] = useState<{id: number, name: string, answer: string }[]>([]);
+  const [rank, setRank] = useState<{id: number, rank: number}[]>([]);
+  const [flag, setFlag] = useState(false);
 
   useEffect(() => {
     setSelectEntries(randomSelect(entries.filter(n => n !== entries[id-1]), 12));
   }, []);
   const displayEntries = selectEntries.slice((currentPage - 1) * 3, currentPage * 3);
+  const updateSumWithId = updateSum.bind(null, rank, pageId);
 
   return (
-    <div className="flex flex-col items-center gap-4 mt-[10%] mx-auto w-[80%]">
-      {displayEntries.map((entry, index) => (
-        <OrderButton
-          key={index}
-          index={index}
-          pageId={pageId}
-          entry={entry}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          clickOrder={clickOrder}
-          setClickOrder={setClickOrder}
-        />
-      ))}
-    </div>
+    <>
+      <div className="flex flex-col items-center gap-4 mt-[10%] mx-auto w-[80%]">
+        {displayEntries.map((entry, index) => (
+          <OrderButton
+            key={index}
+            index={index}
+            entry={entry}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            clickOrder={clickOrder}
+            setClickOrder={setClickOrder}
+            rank={rank}
+            setRank={setRank}
+            flag={flag}
+            setFlag={setFlag}
+          />
+        ))}
+      </div>
+      { flag && 
+        <form action={updateSumWithId}>
+          <Form param="投票"/>
+        </form>
+      }
+    </>
   );
 }
