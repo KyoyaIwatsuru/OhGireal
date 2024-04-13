@@ -1,18 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCrown,faChildReaching,fa2,fa3,faPerson } from '@fortawesome/free-solid-svg-icons'
-// import { SVGProps } from 'react';
-import { CheckID } from "@/app/lib/actions";
+import { faCrown, faChildReaching, fa2, fa3, faPerson } from '@fortawesome/free-solid-svg-icons'
+import { fetchThemes, CheckID, fetchRank } from "@/app/lib/actions";
 
 export default async function Page ({ params }: { params: { id: string } }) {
+  const themes = await fetchThemes();
   const pageId = params.id;
   const isIdValid = await CheckID(pageId);
+  const rank = await fetchRank();
+  const top3 = rank.slice(0, 3);
+  const myRank = rank.findIndex(r => r.id === isIdValid.id) + 1;
 
-  if(isIdValid){
+  if (isIdValid) {
     return (
       <div className="flex justify-center items-center h-screen bg-[#ffcc33] text-black">
         <div className="max-w-2xl w-full">
           <div className="text-4xl font-black text-center mb-12">
-            パンダがカフェで注文する料理は？
+            {themes?.theme}
           </div>
           <div className="max-w-2xl w-full flex justify-center">
             <FontAwesomeIcon icon={faCrown} className="fa-2x"/>
@@ -20,7 +23,7 @@ export default async function Page ({ params }: { params: { id: string } }) {
           <div className="max-w-2xl w-full flex justify-center">
           <div className="flex justify-center items-center">
               <div className="inline-block bg-[#f2eef3] text-black px-4 py-2 rounded w-full text-2xl">
-              <div className="text-3xl font-bold">パンダパンダパンダ</div>
+              <div className="text-3xl font-bold">{top3[0].answer}</div>
               </div>
             </div>
           </div>
@@ -28,7 +31,7 @@ export default async function Page ({ params }: { params: { id: string } }) {
             <FontAwesomeIcon icon={faChildReaching} className="fa-2x"/>
           </div>
           <div className="max-w-2xl w-full flex justify-center mb-8">
-            <div className="text-2xl font-bold">きょうや</div>
+            <div className="text-2xl font-bold">{top3[0].name}</div>
           </div>
           <div className="max-w-2xl w-full flex justify-between gap-4">
             <div className="w-1/2">
@@ -37,14 +40,14 @@ export default async function Page ({ params }: { params: { id: string } }) {
               </div>
               <div className="flex justify-center items-center">
                   <div className="inline-block bg-[#f2eef3] text-black px-4 py-2 rounded w-full text-2xl">
-                  <div className="text-xl font-bold">パンダパンダパンダパンダパンダパンダ</div>
+                  <div className="text-xl font-bold">{top3[1].answer}</div>
                   </div>
               </div>
               <div className="max-w-2xl w-full flex justify-center">
                 <FontAwesomeIcon icon={faPerson} className="fa-2x"/>
               </div>
               <div className="max-w-2xl w-full flex justify-center mb-8">
-                <div className="text-xl font-bold">たくま</div>
+                <div className="text-xl font-bold">{top3[1].name}</div>
               </div>
             </div>
             <div className="w-1/2">
@@ -53,20 +56,20 @@ export default async function Page ({ params }: { params: { id: string } }) {
               </div>
               <div className="flex justify-center items-center">
                   <div className="inline-block bg-[#f2eef3] text-black px-4 py-2 rounded w-full text-2xl">
-                  <div className="text-xl font-bold">パンダパンダパンダパンダパンダ</div>
+                  <div className="text-xl font-bold">{top3[2].answer}</div>
                   </div>
               </div>
               <div className="max-w-2xl w-full flex justify-center">
                 <FontAwesomeIcon icon={faPerson} className="fa-2x"/>
               </div>
               <div className="max-w-2xl w-full flex justify-center mb-8">
-                <div className="text-xl font-bold">あらた</div>
+                <div className="text-xl font-bold">{top3[2].name}</div>
               </div>
             </div>
           </div>
           <div className="flex justify-center space-x-8 mt-4 items-end">
             <div className="text-2xl font-bold">あなたの順位</div>
-            <div className="text-4xl font-bold">５位</div>
+            <div className="text-4xl font-bold">{myRank}位</div>
           </div> 
         </div>
       </div>
