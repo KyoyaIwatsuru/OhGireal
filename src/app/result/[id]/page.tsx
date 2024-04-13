@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCrown, faChildReaching, fa2, fa3, faPerson } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
 import { fetchThemes, CheckID, fetchRank } from "@/app/lib/actions";
+import { Home } from "@/app/components/button";
 
 export default async function Page ({ params }: { params: { id: string } }) {
   const themes = await fetchThemes();
@@ -70,7 +72,10 @@ export default async function Page ({ params }: { params: { id: string } }) {
           <div className="flex justify-center space-x-8 mt-4 items-end">
             <div className="text-2xl font-bold">あなたの順位</div>
             <div className="text-4xl font-bold">{myRank}位</div>
-          </div> 
+          </div>
+          <Link href="/">
+            <Home />
+          </Link>
         </div>
       </div>
     );

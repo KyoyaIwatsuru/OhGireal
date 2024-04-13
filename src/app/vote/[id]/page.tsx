@@ -7,6 +7,7 @@ export default async function Page(params: {params: { id: string }}) {
   const pageId = params.params.id;
   const isIdValid = await CheckID(pageId);
   const entries = await fetchEntries();
+  const end_time = new Date(themes?.end_time.getTime() + 2 * 60 * 1000);
 
   if (isIdValid) {
     return (
@@ -17,7 +18,7 @@ export default async function Page(params: {params: { id: string }}) {
 
         <div className="text-center mb-[5%]">
           <div className="text-2xl">
-            <Time end_time={themes?.end_time}/>
+            <Time end_time={end_time}/>
           </div>
         </div>
 

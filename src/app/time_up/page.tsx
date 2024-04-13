@@ -16,7 +16,7 @@ export default function Page () {
         </div>
       </div>
 
-      <Link href="/answer">
+      <Link href="/">
         <Home />
       </Link>
     </>
