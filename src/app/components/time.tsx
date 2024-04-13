@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useParams } from 'next/navigation';
+import { usePathname, useParams, useRouter, redirect } from 'next/navigation';
 
 export default function Time({
   end_time
@@ -13,15 +12,21 @@ export default function Time({
   const router = useRouter();
   const params = useParams();
   const pageId = params.id;
+  const pathName = usePathname();
+  console.log(pathName);
 
   const countDown = () => {
     const d = new Date(end_time.getTime() - Date.now());
-    // const d = new Date(new Date('2024-04-13 11:58:00').getTime() - Date.now());
+    // const d = new Date(new Date('2024-04-14 00:42:00').getTime() - Date.now());
     const m = String(d.getMinutes()).padStart(2,'0');
     const s = String(d.getSeconds()).padStart(2,'0');
 
     if (d.getTime() <= 2000) {
-      router.push(`/vote/${pageId}`)
+      if (pathName === `/wait_answer/${pageId}`) {
+        router.push(`/vote/${pageId}`)
+      } else if (pathName === `/wait_vote/${pageId}`) {
+        router.push(`/result/${pageId}`)
+      }
     }
     timeChange(`${m}:${s}`);
 

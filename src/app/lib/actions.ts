@@ -60,7 +60,6 @@ export async function updateSum(rank: { id: number, rank: number }[], pageId: st
   noStore();
   weightData(rank);
 
-  console.log(rank);
   try {
     for (let i = 0; i < rank.length; i++) {
       await sql<users>`UPDATE users SET sum = sum + ${rank[i].rank} WHERE id = ${rank[i].id};`;
@@ -82,4 +81,16 @@ function weightData(rank: {id: number, rank: number}[]) {
       r.rank = 1;
     }
   });
+}
+
+export async function fetchRank() {
+  noStore();
+
+  try {
+    const rank = await sql<users>`SELECT id, name, answer, sum FROM users ORDER BY sum DESC;`;
+    return rank.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch rank.');
+  }
 }

@@ -13,6 +13,14 @@ export function Start() {
   );
 }
 
+export function Home() {
+  return (
+    <div className='flex'>
+      <Button size="lg"className="mx-auto mt-[5%]" color='gray' placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>HOME</Button>
+    </div>
+  );
+}
+
 export function Form({param}: {param: string}) {
   return (
     <div className="flex mt-[2%]">
