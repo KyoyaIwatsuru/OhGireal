@@ -18,7 +18,8 @@ export default async function Page () {
     }
   }
 
-  if (themes?.start_time <= now && now < themes?.end_time) {
+  // if (themes?.start_time <= now && now < themes?.end_time) {
+  if (themes?.start_time <= now && now < new Date('2024-04-14 04:08:00')) {
     return(
       <form action={sendData}>
         <div className="text-center mt-40">
