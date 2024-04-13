@@ -13,10 +13,13 @@ export type users = {
 };
 export interface OrderButtonProps {
   index: number;
-  pageId: string;
-  entry: { name: string, answer: string };
+  entry: {id: number, name: string, answer: string };
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   clickOrder: number[];
   setClickOrder: React.Dispatch<React.SetStateAction<number[]>>;
+  rank: { id: number, rank: number }[];
+  setRank: React.Dispatch<React.SetStateAction<{ id: number, rank: number }[]>>;
+  flag: boolean;
+  setFlag: React.Dispatch<React.SetStateAction<boolean>>;
 }

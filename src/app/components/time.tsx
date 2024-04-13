@@ -16,15 +16,16 @@ export default function Time({
 
   const countDown = () => {
     const d = new Date(end_time.getTime() - Date.now());
+    // const d = new Date(new Date('2024-04-13 11:58:00').getTime() - Date.now());
     const m = String(d.getMinutes()).padStart(2,'0');
     const s = String(d.getSeconds()).padStart(2,'0');
 
+    if (d.getTime() <= 2000) {
+      router.push(`/vote/${pageId}`)
+    }
     timeChange(`${m}:${s}`);
 
     const timeoutId = setTimeout(() => {
-      if (d.getTime() <= 0) {
-        router.push(`/vote/${pageId}`)
-      }
       countDown();
     }, 1000);
   };
