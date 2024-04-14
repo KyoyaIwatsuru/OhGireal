@@ -15,60 +15,60 @@ export default async function Page ({ params }: { params: { id: string } }) {
   if (isIdValid) {
     return (
       <div className="flex justify-center items-center h-screen bg-[#ffcc33] text-black">
-        <div className="max-w-2xl w-full">
+        
+        <div className="max-w-2xl w-full ">
           <div className="text-4xl font-black text-center mb-12">
             {themes?.theme}
           </div>
-          <div className="max-w-2xl w-full flex justify-center">
-            <FontAwesomeIcon icon={faCrown} className="fa-2x"/>
+          
+          <div className=" text-gray-900 bg-[#f2eef3] shadow-md bg-clip-border rounded-xl max-w-2xl w-full justify-center">
+            <div className="max-w-2xl w-full flex justify-center">
+              <FontAwesomeIcon icon={faCrown} className="fa-2x"/>
+            </div>
+            <div className="p-6 text-center">
+              <h4 className="block mb-2 text-3xl antialiased font-bold leading-snug tracking-normal text-black">
+                {top3[0].answer}
+              </h4>
+              <p
+                className="block  font-medium text-base antialiased leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-black to-black">
+                {top3[0].name}
+              </p>
+            </div>
           </div>
-          <div className="max-w-2xl w-full flex justify-center">
-          <div className="flex justify-center items-center">
-              <div className="inline-block bg-[#f2eef3] text-black px-4 py-2 rounded w-full text-2xl">
-              <div className="text-3xl font-bold">{top3[0].answer}</div>
+
+          <div className="max-w-2xl w-full flex justify-between mt-4 gap-4">
+            <div className=" tex-black bg-[#f2eef3] shadow-md bg-clip-border rounded-xl w-1/2 justify-center gap-5">
+              <div className="max-w-2xl w-full flex justify-center font-bold">
+                <FontAwesomeIcon icon={fa2} className="fa-2x"/>位
+              </div>
+              <div className="p-6 text-center">
+                <h4 className="block mb-2 text-2xl antialiased font-bold leading-snug tracking-normal text-black">
+                  {top3[1].answer}
+                </h4>
+                <p
+                  className="block text-base antialiased font-medium leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-black to-black">
+                  {top3[1].name}
+                </p>
+              </div>
+            </div>
+
+            <div className=" text-gray-900 bg-[#f2eef3] shadow-md bg-clip-border rounded-xl w-1/2 justify-center gap-5">
+              <div className="max-w-2xl w-full flex justify-center font-bold">
+                <FontAwesomeIcon icon={fa3} className="fa-2x"/>位
+              </div>
+              <div className="p-6 text-center">
+                <h4 className="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                  {top3[2].answer}
+                </h4>
+                <p
+                  className="block  text-base antialiased font-medium leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-black to-black">
+                  {top3[2].name}
+                </p>
               </div>
             </div>
           </div>
-          <div className="max-w-2xl w-full flex justify-center">
-            <FontAwesomeIcon icon={faChildReaching} className="fa-2x"/>
-          </div>
-          <div className="max-w-2xl w-full flex justify-center mb-8">
-            <div className="text-2xl font-bold">{top3[0].name}</div>
-          </div>
-          <div className="max-w-2xl w-full flex justify-between gap-4">
-            <div className="w-1/2">
-              <div className="max-w-2xl w-full flex justify-center">
-                <FontAwesomeIcon icon={fa2} className="fa-2x"/>
-              </div>
-              <div className="flex justify-center items-center">
-                  <div className="inline-block bg-[#f2eef3] text-black px-4 py-2 rounded w-full text-2xl">
-                  <div className="text-xl font-bold">{top3[1].answer}</div>
-                  </div>
-              </div>
-              <div className="max-w-2xl w-full flex justify-center">
-                <FontAwesomeIcon icon={faPerson} className="fa-2x"/>
-              </div>
-              <div className="max-w-2xl w-full flex justify-center mb-8">
-                <div className="text-xl font-bold">{top3[1].name}</div>
-              </div>
-            </div>
-            <div className="w-1/2">
-              <div className="max-w-2xl w-full flex justify-center">
-                <FontAwesomeIcon icon={fa3} className="fa-2x"/>
-              </div>
-              <div className="flex justify-center items-center">
-                  <div className="inline-block bg-[#f2eef3] text-black px-4 py-2 rounded w-full text-2xl">
-                  <div className="text-xl font-bold">{top3[2].answer}</div>
-                  </div>
-              </div>
-              <div className="max-w-2xl w-full flex justify-center">
-                <FontAwesomeIcon icon={faPerson} className="fa-2x"/>
-              </div>
-              <div className="max-w-2xl w-full flex justify-center mb-8">
-                <div className="text-xl font-bold">{top3[2].name}</div>
-              </div>
-            </div>
-          </div>
+
+          
           <div className="flex justify-center space-x-8 mt-4 items-end">
             <div className="text-2xl font-bold">あなたの順位</div>
             <div className="text-4xl font-bold">{myRank}位</div>
