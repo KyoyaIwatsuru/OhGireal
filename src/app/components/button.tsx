@@ -23,7 +23,7 @@ export function Home() {
 
 export function Form({param}: {param: string}) {
   return (
-    <div className="flex mt-[2%]">
+    <div className="flex mt-[5%]">
       <Button type="submit" className="mx-auto" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>{param}</Button>
     </div>
   );
