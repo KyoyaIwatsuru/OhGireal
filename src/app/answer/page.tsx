@@ -34,24 +34,33 @@ export default async function Page () {
                         </div>
                     </div>
 
-                    <div className="mt-20">
-                        <div className="flex flex-col items-end gap-6 w-full my-auto ">
-                            <div className="relative w-full min-w-[200px]">
-                                <textarea
+                    <div className="text-xl text-center mt-20">
+                            名前 or ニックネーム
+                    </div>
+
+                    <div className="mt-0">
+                        <div className="flex flex-col items-end gap-6 w-full mx-auto my-auto ">
+                        <div className="relative w-full min-w-[200px]">
+                            <textarea
                                 name='name'
                                 rows={1}
                                 className="peer w-full resize-none border-b border-blue-gray-200 bg-transparent pt-4 font-sans text-2xl font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
-                                placeholder="" >
-                                </textarea>
-                                <label
-                                className="after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-xl font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-0 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-900 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-gray-500">
-                                    名前 or ニックネーム
-                                </label>
+                                style={{ overflowY: 'scroll' }} // スクロール可能にするためのスタイル
+                                placeholder=""
+                            ></textarea>
+                            <label
+                                className="after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-xl font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-0 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-900 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-gray-500"
+                            >
+                            </label>
                             </div>
                         </div>
                     </div>
 
-                    <div className="mt-20">
+                    <div className="text-xl text-center mt-10">
+                            回答
+                    </div>
+
+                    <div className="mt-0">
                         <div className="flex flex-col items-end gap-6 w-full mx-auto my-auto ">
                             <div className="relative w-full">
                                 <textarea
@@ -62,7 +71,6 @@ export default async function Page () {
                                 </textarea>
                                 <label
                                 className="after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-xl font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-0 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-900 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-gray-500">
-                                    回答
                                 </label>
                             </div>
                         </div>
