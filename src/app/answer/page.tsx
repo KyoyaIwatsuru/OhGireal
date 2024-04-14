@@ -4,8 +4,8 @@ import Time from "@/app/components/time";
 import { Home, Form } from "@/app/components/button";
 
 export default async function Page () {
-  const themes = await fetchThemes();
-  const now = new Date()
+    const themes = await fetchThemes();
+    const now = new Date()
 
     async function sendData(formData: FormData) {
         'use server'

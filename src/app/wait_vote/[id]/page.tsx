@@ -1,12 +1,11 @@
-import { fetchThemes, CheckID } from "@/app/lib/actions";
+import { CheckID } from "@/app/lib/actions";
 import { DefaultSpinner } from '@/app/components/spinner';
 import Time from "@/app/components/time";
 
 export default async function Page ({ params }: { params: { id: string } }) {
-  const themes = await fetchThemes();
   const pageId = params.id;
   const isIdValid = await CheckID(pageId);
-  const end_time = new Date(themes?.end_time.getTime() + 2 * 60 * 1000);
+  const end_time = new Date(Date.now() + 2 * 60 * 1000);
 
   if(isIdValid){
     return (
