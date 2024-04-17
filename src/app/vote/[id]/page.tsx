@@ -1,13 +1,12 @@
-import { fetchThemes, fetchEntries, CheckID } from '@/app/lib/actions';
+import { fetchVoteTime, fetchEntries, CheckID } from '@/app/lib/actions';
 import Time from "@/app/components/time";
 import { Vote } from '@/app/components/button';
 
 export default async function Page(params: {params: { id: string }}) {
-  const themes = await fetchThemes();
+  const themes = await fetchVoteTime();
   const pageId = params.params.id;
   const isIdValid = await CheckID(pageId);
   const entries = await fetchEntries();
-  const end_time = new Date(themes?.end_time.getTime() + 2 * 60 * 1000);
 
   if (isIdValid) {
     return (
@@ -18,7 +17,7 @@ export default async function Page(params: {params: { id: string }}) {
 
         <div className="text-center mb-[5%]">
           <div className="text-2xl">
-            <Time end_time={end_time}/>
+            <Time themes={themes}/>
           </div>
         </div>
 

@@ -4,21 +4,16 @@ import { Home } from "@/app/components/button";
 export default function Page () {
   return(
     <>
-      <div className="text-center mt-40">
-        <div className="text-4xl">
-          お題の時間外です
+      <div className="flex justify-center items-center h-screen font-bold bg-[#ffcc33] text-black">
+        <div className="text-center">
+          <div className="text-2xl">
+            残念！投稿時間外です
+          </div>
+          <Link href="/">
+            <Home />
+          </Link>
         </div>
       </div>
-
-      <div className="text-center mt-20">
-        <div className="text-2xl">
-          残念！投稿時間外です
-        </div>
-      </div>
-
-      <Link href="/">
-        <Home />
-      </Link>
     </>
   );
 }

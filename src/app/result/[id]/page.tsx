@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCrown, faChildReaching, fa2, fa3, faPerson } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
-import { fetchThemes, CheckID, fetchRank } from "@/app/lib/actions";
+import { fetchVoteTime, CheckID, fetchRank } from "@/app/lib/actions";
 import { Home } from "@/app/components/button";
 
 export default async function Page ({ params }: { params: { id: string } }) {
-  const themes = await fetchThemes();
+  const themes = await fetchVoteTime();
   const pageId = params.id;
   const isIdValid = await CheckID(pageId);
   const rank = await fetchRank();
@@ -15,12 +15,12 @@ export default async function Page ({ params }: { params: { id: string } }) {
   if (isIdValid) {
     return (
       <div className="flex justify-center items-center h-screen bg-[#ffcc33] text-black">
-        
+
         <div className="max-w-2xl w-full ">
           <div className="text-4xl font-black text-center mb-12">
             {themes?.theme}
           </div>
-          
+
           <div className=" text-gray-900 bg-[#f2eef3] shadow-md bg-clip-border rounded-xl max-w-2xl w-full justify-center">
             <div className="max-w-2xl w-full flex justify-center">
               <FontAwesomeIcon icon={faCrown} className="fa-2x"/>
@@ -29,8 +29,7 @@ export default async function Page ({ params }: { params: { id: string } }) {
               <h4 className="block mb-2 text-3xl antialiased font-bold leading-snug tracking-normal text-black">
                 {top3[0].answer}
               </h4>
-              <p
-                className="block  font-medium text-base antialiased leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-black to-black">
+              <p className="block  font-medium text-base antialiased leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-black to-black">
                 {top3[0].name}
               </p>
             </div>
@@ -45,14 +44,13 @@ export default async function Page ({ params }: { params: { id: string } }) {
                 <h4 className="block mb-2 text-2xl antialiased font-bold leading-snug tracking-normal text-black">
                   {top3[1].answer}
                 </h4>
-                <p
-                  className="block text-base antialiased font-medium leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-black to-black">
+                <p className="block text-base antialiased font-medium leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-black to-black">
                   {top3[1].name}
                 </p>
               </div>
             </div>
 
-            <div className=" text-gray-900 bg-[#f2eef3] shadow-md bg-clip-border rounded-xl w-1/2 justify-center gap-5">
+            <div className="text-gray-900 bg-[#f2eef3] shadow-md bg-clip-border rounded-xl w-1/2 justify-center gap-5">
               <div className="max-w-2xl w-full flex justify-center font-bold">
                 <FontAwesomeIcon icon={fa3} className="fa-2x"/>位
               </div>
@@ -60,15 +58,13 @@ export default async function Page ({ params }: { params: { id: string } }) {
                 <h4 className="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                   {top3[2].answer}
                 </h4>
-                <p
-                  className="block  text-base antialiased font-medium leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-black to-black">
+                <p className="block  text-base antialiased font-medium leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-black to-black">
                   {top3[2].name}
                 </p>
               </div>
             </div>
           </div>
 
-          
           <div className="flex justify-center space-x-8 mt-4 items-end">
             <div className="text-2xl font-bold">あなたの順位</div>
             <div className="text-4xl font-bold">{myRank}位</div>

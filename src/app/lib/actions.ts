@@ -5,7 +5,7 @@ import { themes, users } from './definitions';
 import { unstable_noStore as noStore } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-export async function fetchThemes() {
+export async function fetchEndTime() {
   noStore();
   const now = new Date().toLocaleString();
 
@@ -14,7 +14,7 @@ export async function fetchThemes() {
     return themes.rows.slice(-1)[0];
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch themes.');
+    throw new Error('Failed to fetch end time.');
   }
 }
 
@@ -36,11 +36,23 @@ export async function CheckID(pageId: string) {
 
   try {
     const id = await sql<users>`SELECT id FROM users WHERE rand = ${pageId};`;
-
     return id.rows[0];
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch id.');
+  }
+}
+
+export async function fetchVoteTime() {
+  noStore();
+  const now = new Date().toLocaleString();
+
+  try {
+    const themes = await sql<themes>`SELECT theme, end_time, vote_time FROM themes WHERE end_time <= ${now} AND ${now} < vote_time;`;
+    return themes.rows.slice(-1)[0];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch vote time.');
   }
 }
 
