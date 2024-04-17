@@ -3,6 +3,7 @@ export type themes = {
   theme: string;
   start_time: Date;
   end_time: Date;
+  vote_time: Date;
 };
 
 export type users = {
@@ -10,10 +11,12 @@ export type users = {
   name: string;
   answer: string;
   sum: number;
+  rand: number;
 };
 export interface OrderButtonProps {
   index: number;
   entry: {id: number, name: string, answer: string };
+  num: number;
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   clickOrder: number[];

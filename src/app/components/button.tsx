@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Button } from "@material-tailwind/react";
 import { OrderButtonProps } from "@/app/lib/definitions";
 import { updateSum } from '@/app/lib/actions';
+import Link from 'next/link';
 
 export function Start() {
   return (
@@ -15,7 +16,7 @@ export function Start() {
 
 export function Home() {
   return (
-    <div className='flex'>
+    <div className='flex mt-[15%]'>
       <Button size="lg"className="mx-auto mt-[5%]" color='gray' placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>HOME</Button>
     </div>
   );
@@ -32,6 +33,7 @@ export function Form({param}: {param: string}) {
 const OrderButton: React.FC<OrderButtonProps> = ({
   index,
   entry,
+  num,
   currentPage,
   setCurrentPage,
   clickOrder,
@@ -41,18 +43,33 @@ const OrderButton: React.FC<OrderButtonProps> = ({
   flag,
   setFlag
 }) => {
-  const card = 3
-  const frequency = 4
   const handleClick = () => {
-    if (!clickOrder.includes(index)) {
-      setClickOrder([...clickOrder, index]);
-      setRank([...rank, {id: entry.id, rank: clickOrder.length + 1}]);
-      if (clickOrder.length === card - 1) {
-        setCurrentPage((prevPage) => prevPage + 1);
-        if(currentPage === frequency) {
-          setFlag(true);
+    if (num < 12) {
+      const card = 3
+      if (!clickOrder.includes(index)) {
+        setClickOrder([...clickOrder, index]);
+        setRank([...rank, {id: entry.id, rank: clickOrder.length + 1}]);
+        if (clickOrder.length === card - 1 || rank.length === num - 1) {
+          setCurrentPage((prevPage) => prevPage + 1);
+          if(rank.length === num - 1) {
+            setFlag(true);
+          }
+          setClickOrder([]);
         }
-        setClickOrder([]);
+      }
+    } else {
+      const card = 3
+      const frequency = 4
+      if (!clickOrder.includes(index)) {
+        setClickOrder([...clickOrder, index]);
+        setRank([...rank, {id: entry.id, rank: clickOrder.length + 1}]);
+        if (clickOrder.length === card - 1) {
+          setCurrentPage((prevPage) => prevPage + 1);
+          if(currentPage === frequency) {
+            setFlag(true);
+          }
+          setClickOrder([]);
+        }
       }
     }
   }
@@ -93,35 +110,51 @@ export function Vote({id, entries, pageId}: {id: number, entries: {id: number, n
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
-    setSelectEntries(randomSelect(entries.filter(n => n !== entries[id-1]), 12));
+    const others = entries.filter(entry => entry.id !== id)
+    setSelectEntries(randomSelect(others, 12));
   }, []);
+  const num = selectEntries.length;
   const displayEntries = selectEntries.slice((currentPage - 1) * 3, currentPage * 3);
   const updateSumWithId = updateSum.bind(null, rank, pageId);
 
-  return (
-    <>
-      <div className="flex flex-col items-center gap-4 mt-[10%] mx-auto w-[80%]">
-        {displayEntries.map((entry, index) => (
-          <OrderButton
-            key={index}
-            index={index}
-            entry={entry}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            clickOrder={clickOrder}
-            setClickOrder={setClickOrder}
-            rank={rank}
-            setRank={setRank}
-            flag={flag}
-            setFlag={setFlag}
-          />
-        ))}
-      </div>
-      { flag && 
-        <form action={updateSumWithId}>
-          <Form param="投票"/>
-        </form>
-      }
-    </>
-  );
+  if (num === 0) {
+    return (
+      <>
+        <div className='pt-[2%] text-2xl'>
+          参加者はあなたのみです。
+        </div>
+        <Link href="/">
+          <Home />
+        </Link>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <div className="flex flex-col items-center gap-4 mt-[10%] mx-auto w-[80%]">
+          {displayEntries.map((entry, index) => (
+            <OrderButton
+              key={index}
+              index={index}
+              entry={entry}
+              num={num}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              clickOrder={clickOrder}
+              setClickOrder={setClickOrder}
+              rank={rank}
+              setRank={setRank}
+              flag={flag}
+              setFlag={setFlag}
+            />
+          ))}
+        </div>
+        { flag && 
+          <form action={updateSumWithId}>
+            <Form param="投票"/>
+          </form>
+        }
+      </>
+    );
+  }
 }
