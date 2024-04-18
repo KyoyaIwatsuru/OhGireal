@@ -19,10 +19,12 @@ export default function Time({
   const params = useParams();
   const pageId = params.id;
   let pathName = usePathname();
+  const [date , setDate] = useState(new Date());
 
   const countDown = () => {
     let difference = 0;
     console.log(new Date(), Date.now());
+    setDate(new Date());
     if (pathName === `/answer` || pathName === `/wait_answer/${pageId}`) {
       difference = themes.end_time.getTime() - Date.now();
       console.log(themes.start_time, themes.start_time.getTime());
@@ -61,6 +63,8 @@ export default function Time({
 
   return (
     <div>
+      {`現在時刻 ${date.toLocaleString()}`}
+      <br />
       {`残り時間 ${time}`}
     </div>
   );
