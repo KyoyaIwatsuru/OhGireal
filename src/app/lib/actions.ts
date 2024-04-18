@@ -24,10 +24,12 @@ export async function addUser(name: string, answer: string) {
 
   try {
     await sql`INSERT INTO users (name, answer, sum, rand) VALUES (${name}, ${answer}, 0, ${rand});`;
+    console.log('add user')
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to add user.');
   }
+  console.log('redirect to wait_answer');
   redirect(`/wait_answer/${rand}`);
 }
 
@@ -75,11 +77,13 @@ export async function updateSum(rank: { id: number, rank: number }[], pageId: st
   try {
     for (let i = 0; i < rank.length; i++) {
       await sql<users>`UPDATE users SET sum = sum + ${rank[i].rank} WHERE id = ${rank[i].id};`;
+      console.log('update');
     }
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to update sum.');
   }
+  console.log('redirect to wait_vote');
   redirect(`/wait_vote/${pageId}`);
 }
 

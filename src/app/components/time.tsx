@@ -22,10 +22,13 @@ export default function Time({
 
   const countDown = () => {
     let difference = 0;
+    console.log(new Date(), Date.now());
     if (pathName === `/answer` || pathName === `/wait_answer/${pageId}`) {
       difference = themes.end_time.getTime() - Date.now();
+      console.log(themes.start_time, themes.start_time.getTime());
     } else if (pathName === `/vote/${pageId}` || pathName === `/wait_vote/${pageId}`) {
       difference = themes.vote_time.getTime() - Date.now();
+      console.log(themes.end_time, themes.end_time.getTime());
     }
     const d = new Date(difference);
     const m = String(d.getMinutes()).padStart(2,'0');
@@ -36,9 +39,11 @@ export default function Time({
       if (pathName === `/answer`) {
         router.push(`/time_up`)
       } else if (pathName === `/wait_answer/${pageId}`) {
+        console.log('push to vote')
         router.push(`/vote/${pageId}`)
       } else if (pathName === `/vote/${pageId}` || pathName === `/wait_vote/${pageId}`) {
         setTimeout(() => {
+          console.log('push to result')
           router.push(`/result/${pageId}`)
         }, 3000);
       }
