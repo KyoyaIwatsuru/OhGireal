@@ -7,7 +7,15 @@ import { redirect } from 'next/navigation';
 
 export async function fetchEndTime() {
   noStore();
-  const now = new Date().toLocaleString();
+  const now = new Date().toLocaleString('ja-JP', {
+    timeZone: 'Asia/Tokyo',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
 
   try {
     const themes = await sql<themes>`SELECT theme, start_time, end_time FROM themes WHERE start_time <= ${now} AND ${now} < end_time;`;
@@ -24,12 +32,10 @@ export async function addUser(name: string, answer: string) {
 
   try {
     await sql`INSERT INTO users (name, answer, sum, rand) VALUES (${name}, ${answer}, 0, ${rand});`;
-    console.log('add user')
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to add user.');
   }
-  console.log('redirect to wait_answer');
   redirect(`/wait_answer/${rand}`);
 }
 
@@ -47,7 +53,15 @@ export async function CheckID(pageId: string) {
 
 export async function fetchVoteTime() {
   noStore();
-  const now = new Date().toLocaleString();
+  const now = new Date().toLocaleString('ja-JP', {
+    timeZone: 'Asia/Tokyo',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  });
 
   try {
     const themes = await sql<themes>`SELECT theme, end_time, vote_time FROM themes WHERE end_time <= ${now} AND ${now} < vote_time;`;
@@ -77,13 +91,11 @@ export async function updateSum(rank: { id: number, rank: number }[], pageId: st
   try {
     for (let i = 0; i < rank.length; i++) {
       await sql<users>`UPDATE users SET sum = sum + ${rank[i].rank} WHERE id = ${rank[i].id};`;
-      console.log('update');
     }
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to update sum.');
   }
-  console.log('redirect to wait_vote');
   redirect(`/wait_vote/${pageId}`);
 }
 
