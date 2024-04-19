@@ -7,15 +7,7 @@ import { redirect } from 'next/navigation';
 
 export async function fetchEndTime() {
   noStore();
-  const now = new Date().toLocaleString('ja-JP', {
-    timeZone: 'Asia/Tokyo',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
-  });
+  const now = new Date().toLocaleString();
 
   try {
     const themes = await sql<themes>`SELECT theme, start_time, end_time FROM themes WHERE start_time <= ${now} AND ${now} < end_time;`;
@@ -53,15 +45,7 @@ export async function CheckID(pageId: string) {
 
 export async function fetchVoteTime() {
   noStore();
-  const now = new Date().toLocaleString('ja-JP', {
-    timeZone: 'Asia/Tokyo',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
-  });
+  const now = new Date().toLocaleString();
 
   try {
     const themes = await sql<themes>`SELECT theme, end_time, vote_time FROM themes WHERE end_time <= ${now} AND ${now} < vote_time;`;
