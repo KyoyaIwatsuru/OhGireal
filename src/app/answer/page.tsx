@@ -86,7 +86,7 @@ export default async function Page () {
             </div>
           </div>
 
-          <Form param='投稿'/>
+          <Form param='投稿' themes={themes}/>
         </div>
       </form>
     );

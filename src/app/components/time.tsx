@@ -18,14 +18,22 @@ export default function Time({
   const router = useRouter();
   const params = useParams();
   const pageId = params.id;
-  let pathName = usePathname();
+  const pathName = usePathname();
 
   const countDown = () => {
     let difference = 0;
     if (pathName === `/answer` || pathName === `/wait_answer/${pageId}`) {
-      difference = themes.end_time.getTime() - Date.now();
+      if (themes.end_time === undefined) {
+        difference = 0;
+      } else {
+        difference = themes.end_time.getTime() - Date.now();
+      }
     } else if (pathName === `/vote/${pageId}` || pathName === `/wait_vote/${pageId}`) {
-      difference = themes.vote_time.getTime() - Date.now();
+      if (themes.vote_time === undefined) {
+        difference = 0;
+      } else {
+        difference = themes.vote_time.getTime() - Date.now();
+      }
     }
     const d = new Date(difference);
     const m = String(d.getMinutes()).padStart(2,'0');
@@ -33,15 +41,13 @@ export default function Time({
 
     if (difference <= 0) {
       setTime('00:00');
-      if (pathName === `/answer`) {
-        router.push(`/time_up`)
-      } else if (pathName === `/wait_answer/${pageId}`) {
-        router.push(`/vote/${pageId}`)
-      } else if (pathName === `/vote/${pageId}` || pathName === `/wait_vote/${pageId}`) {
-        setTimeout(() => {
+      setTimeout(() => {
+        if (pathName === `/wait_answer/${pageId}`) {
+          router.push(`/vote/${pageId}`)
+        } else if (pathName === `/vote/${pageId}` || pathName === `/wait_vote/${pageId}`) {
           router.push(`/result/${pageId}`)
-        }, 3000);
-      }
+        }
+      }, 4000);
     } else {
       setTime(`${m}:${s}`);
     }

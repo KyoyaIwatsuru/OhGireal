@@ -22,7 +22,7 @@ export default async function Page(params: {params: { id: string }}) {
         </div>
 
         <div className="text-center text-2xl">面白いと思う順番にクリック</div>
-        <Vote id={isIdValid.id} entries={entries} pageId={pageId}/>
+        <Vote id={isIdValid.id} entries={entries} pageId={pageId} themes={themes}/>
       </div>
     );
   } else {
