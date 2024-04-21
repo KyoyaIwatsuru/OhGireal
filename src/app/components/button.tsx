@@ -1,10 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useParams, usePathname } from 'next/navigation';
 import { Button } from "@material-tailwind/react";
 import { OrderButtonProps } from "@/app/lib/definitions";
 import { updateSum } from '@/app/lib/actions';
-import Link from 'next/link';
 
 export function Start() {
   return (
@@ -22,12 +23,50 @@ export function Home() {
   );
 }
 
-export function Form({param}: {param: string}) {
-  return (
-    <div className="flex mt-[5%]">
-      <Button type="submit" className="mx-auto" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>{param}</Button>
-    </div>
-  );
+export function Form({
+  param,
+  themes
+}: {
+  param: string,
+  themes: {id: number, theme: string, start_time: Date, end_time: Date, vote_time: Date}
+}) {
+  const params = useParams();
+  const pageId = params.id;
+  const pathName = usePathname();
+  const [time, setTime] = useState(1);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (pathName === `/answer`) {
+        setTime(themes.end_time.getTime() - Date.now());
+      } else if (pathName === `/vote/${pageId}`) {
+        setTime(themes.vote_time.getTime() - Date.now());
+      }
+    }, 1000);
+    return () => {
+      clearTimeout(timeoutId)
+    };
+  }, [time]);
+
+  if (time <= 0) {
+    if (pathName === `/answer`) {
+      return (
+        <Link href="/time_up">
+          <Button size='lg' className="mx-auto" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>{param}</Button>
+        </Link>
+      );
+    } else {
+      return (
+        <></>
+      );
+    }
+  } else {
+    return (
+      <div className="flex mt-[5%]">
+        <Button type="submit" size='lg' className="mx-auto" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>{param}</Button>
+      </div>
+    );
+  }
 }
 
 const OrderButton: React.FC<OrderButtonProps> = ({
@@ -102,7 +141,16 @@ function randomSelect(array: {id: number, name: string, answer: string}[], num: 
   return newArray;
 }
 
-export function Vote({id, entries, pageId}: {id: number, entries: {id: number, name: string, answer: string }[], pageId: string}) {
+export function Vote({id,
+  entries,
+  pageId,
+  themes
+}: {
+  id: number,
+  entries: {id: number, name: string, answer: string }[],
+  pageId: string,
+  themes: {id: number, theme: string, start_time: Date, end_time: Date, vote_time: Date}
+}) {
   const [currentPage, setCurrentPage] = useState(1);
   const [clickOrder, setClickOrder] = useState<number[]>([]);
   const [selectEntries, setSelectEntries] = useState<{id: number, name: string, answer: string }[]>([]);
@@ -151,7 +199,7 @@ export function Vote({id, entries, pageId}: {id: number, entries: {id: number, n
         </div>
         { flag && 
           <form action={updateSumWithId}>
-            <Form param="投票"/>
+            <Form param="投票" themes={themes}/>
           </form>
         }
       </>
