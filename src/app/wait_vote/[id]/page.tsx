@@ -11,13 +11,14 @@ export default async function Page ({ params }: { params: { id: string } }) {
     return (
       <>
         <div className="h-screen w-screen flex flex-col justify-center items-center font-bold bg-[#ffcc33]">
-          <div className="text-center mb-[5%]">
+          <div className="flex flex-col items-center md:flex-row text-2xl font-bold px-[10%] mb-4">
+            <div>残り時間が経過するまで</div>
+            <div>お待ち下さい</div>
+          </div>
+          <div className="text-center ">
             <div className="text-2xl">
               <Time themes={themes}/>
             </div>
-          </div>
-          <div className="text-2xl px-[10%]">
-            投票が完了するまでお待ちください
           </div>
           <div className="mt-10">
             <DefaultSpinner />
