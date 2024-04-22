@@ -14,19 +14,21 @@ export default async function Page ({ params }: { params: { id: string } }) {
 
   if (isIdValid) {
     return (
-      <div className="flex justify-center items-center h-screen bg-[#ffcc33] text-black">
+      <div className="flex justify-center items-center h-screen bg-[#ffcc33] text-black overflow-y-scroll ">
 
-        <div className="max-w-2xl w-full ">
-          <div className="text-4xl font-black text-center mb-12">
-            {themes?.theme}
+        <div className="max-w-2xl w-[90%] mt-20">
+          <div className="text-center">
+            <div className="text-2xl">
+              {themes?.theme}
+            </div>
           </div>
 
-          <div className=" text-gray-900 bg-[#f2eef3] shadow-md bg-clip-border rounded-xl max-w-2xl w-full justify-center">
+          <div className=" text-gray-900 bg-[#f2eef3] shadow-md bg-clip-border rounded-xl max-w-2xl w-full justify-center mt-20">
             <div className="max-w-2xl w-full flex justify-center">
               <FontAwesomeIcon icon={faCrown} className="fa-2x"/>
             </div>
             <div className="p-6 text-center">
-              <h4 className="block mb-2 text-3xl antialiased font-bold leading-snug tracking-normal text-black">
+              <h4 className="block mb-2 text-2xl sm:text-3xl  antialiased font-bold leading-snug tracking-normal text-black">
                 {top3[0].answer}
               </h4>
               <p className="block  font-medium text-base antialiased leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-black to-black">
@@ -35,13 +37,13 @@ export default async function Page ({ params }: { params: { id: string } }) {
             </div>
           </div>
 
-          <div className="max-w-2xl w-full flex justify-between mt-4 gap-4">
-            <div className=" tex-black bg-[#f2eef3] shadow-md bg-clip-border rounded-xl w-1/2 justify-center gap-5">
+          <div className="max-w-2xl w-full flex flex-col mt-4 gap-4 sm:flex-row ">
+            <div className=" tex-black bg-[#f2eef3] shadow-md bg-clip-border rounded-xl justify-center w-full sm:w-1/2">
               <div className="max-w-2xl w-full flex justify-center font-bold">
                 <FontAwesomeIcon icon={fa2} className="fa-2x"/>位
               </div>
               <div className="p-6 text-center">
-                <h4 className="block mb-2 text-2xl antialiased font-bold leading-snug tracking-normal text-black">
+                <h4 className="block mb-2 text-xl sm:text-2xl antialiased font-bold leading-snug tracking-normal text-black">
                   {top3[1].answer}
                 </h4>
                 <p className="block text-base antialiased font-medium leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-black to-black">
@@ -50,12 +52,12 @@ export default async function Page ({ params }: { params: { id: string } }) {
               </div>
             </div>
 
-            <div className="text-gray-900 bg-[#f2eef3] shadow-md bg-clip-border rounded-xl w-1/2 justify-center gap-5">
+            <div className="text-gray-900 bg-[#f2eef3] shadow-md bg-clip-border rounded-xl justify-center w-full sm:w-1/2">
               <div className="max-w-2xl w-full flex justify-center font-bold">
                 <FontAwesomeIcon icon={fa3} className="fa-2x"/>位
               </div>
               <div className="p-6 text-center">
-                <h4 className="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                <h4 className="block mb-2 font-sans text-xl sm:text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                   {top3[2].answer}
                 </h4>
                 <p className="block  text-base antialiased font-medium leading-relaxed text-transparent bg-clip-text bg-gradient-to-tr from-black to-black">
@@ -73,6 +75,7 @@ export default async function Page ({ params }: { params: { id: string } }) {
             <Home />
           </Link>
         </div>
+
       </div>
     );
   } else {
