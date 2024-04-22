@@ -16,23 +16,14 @@ export default async function Page(params: {params: { id: string }}) {
         </div>
 
         <div className="text-center mb-[5%]">
-<<<<<<< HEAD
-          <div className="text-2xl">
+          <div className="text-xl md:text-2xl">
             <Time themes={themes}/>
           </div>
         </div>
 
-        <div className="text-center text-2xl">面白いと思う順番にクリック</div>
-        <Vote id={isIdValid.id} entries={entries} pageId={pageId} themes={themes}/>
-=======
-          <div className="text-xl md:text-2xl">
-            <Time end_time={end_time}/>
-          </div>
-        </div>
-
         <div className="text-center text-xl md:text-2xl">面白いと思う順番にクリック</div>
-        <Vote id={1} entries={entries} pageId={pageId}/>
->>>>>>> d005e50 (refs #38: voteページの修正)
+        <Vote id={isIdValid.id} entries={entries} pageId={pageId} themes={themes}/>
+
       </div>
     );
   } else {
