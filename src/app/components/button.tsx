@@ -185,7 +185,7 @@ export function Vote({id,
   } else {
     return (
       <>
-        <div className="flex flex-col items-center gap-4 mt-[10%] mx-auto w-[80%]">
+        <div className="flex flex-col items-center gap-4 mx-auto w-[80%]">
           {displayEntries.map((entry, index) => (
             <OrderButton
               key={index}
