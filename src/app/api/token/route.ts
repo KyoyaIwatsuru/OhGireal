@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { sql } from '@vercel/postgres';
 import { unstable_noStore as noStore } from 'next/cache';
 
