@@ -106,3 +106,14 @@ export async function fetchRank() {
     throw new Error('Failed to fetch rank.');
   }
 }
+
+export async function sendToken(token: string) {
+  noStore();
+
+  try {
+    await sql`INSERT INTO tokens (token) VALUES (${token});`;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to send token.');
+  }
+}
